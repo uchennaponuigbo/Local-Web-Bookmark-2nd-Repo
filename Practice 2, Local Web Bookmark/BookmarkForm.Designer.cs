@@ -54,6 +54,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblMaxLines = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblDefaultBrowser = new System.Windows.Forms.Label();
+            this.chkIncognito = new System.Windows.Forms.CheckBox();
             this.lblFileName = new System.Windows.Forms.Label();
             this.lblDateSaved = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -181,21 +183,21 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -210,7 +212,7 @@
             // informationToolStripMenuItem
             // 
             this.informationToolStripMenuItem.Name = "informationToolStripMenuItem";
-            this.informationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.informationToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.informationToolStripMenuItem.Text = "Info...";
             this.informationToolStripMenuItem.Click += new System.EventHandler(this.informationToolStripMenuItem_Click);
             // 
@@ -262,6 +264,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblDefaultBrowser);
+            this.groupBox1.Controls.Add(this.chkIncognito);
             this.groupBox1.Controls.Add(this.lblFileName);
             this.groupBox1.Controls.Add(this.lblDateSaved);
             this.groupBox1.Controls.Add(this.label3);
@@ -274,12 +278,30 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "File Name:";
             // 
+            // lblDefaultBrowser
+            // 
+            this.lblDefaultBrowser.AutoSize = true;
+            this.lblDefaultBrowser.Location = new System.Drawing.Point(338, 0);
+            this.lblDefaultBrowser.Name = "lblDefaultBrowser";
+            this.lblDefaultBrowser.Size = new System.Drawing.Size(84, 13);
+            this.lblDefaultBrowser.TabIndex = 20;
+            this.lblDefaultBrowser.Text = "Internet Explorer\r\n";
+            // 
+            // chkIncognito
+            // 
+            this.chkIncognito.AutoSize = true;
+            this.chkIncognito.Location = new System.Drawing.Point(294, 50);
+            this.chkIncognito.Name = "chkIncognito";
+            this.chkIncognito.Size = new System.Drawing.Size(128, 17);
+            this.chkIncognito.TabIndex = 19;
+            this.chkIncognito.Text = "Visit URL in Incogntio";
+            this.chkIncognito.UseVisualStyleBackColor = true;
+            // 
             // lblFileName
             // 
-            this.lblFileName.AutoSize = true;
             this.lblFileName.Location = new System.Drawing.Point(63, 0);
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(27, 13);
+            this.lblFileName.Size = new System.Drawing.Size(269, 16);
             this.lblFileName.TabIndex = 18;
             this.lblFileName.Text = "N/A";
             // 
@@ -405,6 +427,8 @@
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.TextBox txtModifyLink;
         private System.Windows.Forms.Button btnModify;
+        private System.Windows.Forms.CheckBox chkIncognito;
+        private System.Windows.Forms.Label lblDefaultBrowser;
     }
 }
 

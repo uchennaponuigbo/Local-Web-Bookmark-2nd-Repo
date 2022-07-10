@@ -94,6 +94,7 @@
     <Compile Include="BookmarkForm.Designer.cs">
       <DependentUpon>BookmarkForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Browser.cs" />
     <Compile Include="Info.cs">
       <SubType>Form</SubType>
     </Compile>

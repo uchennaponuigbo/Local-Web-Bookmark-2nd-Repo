@@ -3,12 +3,14 @@ using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Practice_2__Local_Web_Bookmark
 {
     public partial class BookmarkForm : Form
     {
         private const string Na = "N/A";
+        private readonly string DefaultBrowserPath;
 
         public BookmarkForm()
         {
@@ -16,6 +18,18 @@ namespace Practice_2__Local_Web_Bookmark
 
             txtWebLink.Focus();
             lblMaxLines.Text = lblCurrLine.Text = 0.ToString();
+            DefaultBrowserPath = Browser.GetDefault();
+            if (!string.IsNullOrEmpty(DefaultBrowserPath))
+            {
+                //break the file path into chunks
+                //browser exe name is always before ".exe" so it would be in the (n - 2)th position
+                //also accounting for browsers that have two or more words in their names, so we title case them
+                string[] lines = DefaultBrowserPath.Split('\\', '.');
+
+                lblDefaultBrowser.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(lines[lines.Length - 2]);
+            }
+            else
+                chkIncognito.Enabled = false;
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -88,10 +102,24 @@ namespace Practice_2__Local_Web_Bookmark
         {
             if(WebListBox.SelectedItem != null)
             {
-                string item = WebListBox.SelectedItem.ToString();
-                if (WebValidator.URLIsValid(item))
+                string url = WebListBox.SelectedItem.ToString();
+                if (WebValidator.URLIsValid(url))
                 {
-                    Process.Start(item);
+                    Process process = new Process();
+                    try
+                    {
+                        process.StartInfo.FileName = DefaultBrowserPath;
+                        process.StartInfo.Arguments = !chkIncognito.Checked ? url : $"{url} --incognito";
+                        process.Start();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "URL error");
+                    }
+                    finally
+                    {
+                        process.Dispose();
+                    }
                 }
             }           
         }
