@@ -37,12 +37,18 @@ namespace Practice_2__Local_Web_Bookmark
             DeleteItem();
         }
 
-        private void Addbutton_Click(object sender, EventArgs e)
-        {            
-            WebListBox.Items.Add(txtWebLink.Text);
+        private void AddItem(int index)
+        {
+            //WebListBox.Items.Add(txtWebLink.Text);
+            WebListBox.Items.Insert(index, txtWebLink.Text);
             txtWebLink.Text = "";
             lblMaxLines.Text = WebListBox.Items.Count.ToString();
             AutoScrollListBox();
+        }
+
+        private void Addbutton_Click(object sender, EventArgs e)
+        {
+            AddItem(WebListBox.Items.Count);   
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -249,12 +255,6 @@ namespace Practice_2__Local_Web_Bookmark
             VisitURL();
         }
 
-        private void informationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form Info = new Info();
-            Info.Show();
-        }
-
         private void AutoScrollListBox()
         {
             int items = WebListBox.Height / WebListBox.ItemHeight;
@@ -276,6 +276,18 @@ namespace Practice_2__Local_Web_Bookmark
                 txtModifyLink.Text = ""; 
                 WebListBox.SelectedIndex = -1;
             }          
+        }
+
+        private void WebListBox_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(WebListBox,
+                "Right click the listbox for hidden controls.\n\n" +
+                "Double click on a selected url to take you to the website (if it's valid).");
+        }
+
+        private void btnAddAtPos_Click(object sender, EventArgs e)
+        {
+            AddItem(WebListBox.SelectedIndex != -1 ? WebListBox.SelectedIndex : WebListBox.Items.Count);
         }
     }
 }
